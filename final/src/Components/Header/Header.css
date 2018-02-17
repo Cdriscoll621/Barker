@@ -1,0 +1,9 @@
+.header {
+    width: 100%;
+    position: fixed;
+    display: flex;
+    justify-content: space-around;
+    background-color: coral;
+    height: 100px;
+    opacity: .8;
+}
