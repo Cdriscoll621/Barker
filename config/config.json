@@ -1,11 +1,7 @@
 {
   "development": {
     "username": "root",
-<<<<<<< HEAD
-    "password": null,
-=======
     "password": "root",
->>>>>>> 92efe1145ecd97a8668891e8c66df0fad6334ca6
     "database": "doggiePlayDate_db",
     "host": "127.0.0.1",
     "dialect": "mysql"

@@ -1,12 +1,12 @@
-<<<<<<< HEAD
+
 // Dependencies
-=======
+
 // *****************************************************************************
 // Server.js - This file is the initial starting point for the Node/Express server.
 //
 // ******************************************************************************
 // *** Dependencies
->>>>>>> 92efe1145ecd97a8668891e8c66df0fad6334ca6
+
 // =============================================================
 var express = require("express");
 var bodyParser = require("body-parser");
@@ -14,11 +14,8 @@ var bodyParser = require("body-parser");
 // Sets up the Express App
 // =============================================================
 var app = express();
-<<<<<<< HEAD
+
 var PORT = process.env.PORT || 3000;
-=======
-var PORT = process.env.PORT || 8080;
->>>>>>> 92efe1145ecd97a8668891e8c66df0fad6334ca6
 
 // Requiring our models for syncing
 var db = require("./models");
