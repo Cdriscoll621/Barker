@@ -3,7 +3,7 @@ USE doggiePlayDate_db;
 CREATE TABLE IF NOT exists dogOwner (
     id NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_login VARCHAR(255) NOT NULL, -- email address Should we encrypt?
-    user_passwd VARCHAR(50), -- to be encrypted 
+    user_passwd VARCHAR(50) NOT NULL, -- to be encrypted 
     fname VARCHAR(255) NULL,
     lname VARCHAR(255)NULL,
     addr1 VARCHAR(255)NULL,
