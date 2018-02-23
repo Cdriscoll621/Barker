@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "final",
   "version": "1.0.0",
   "description": "",
@@ -15,6 +16,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
+=======
+  "name": "final-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+>>>>>>> 92efe1145ecd97a8668891e8c66df0fad6334ca6
   },
   "repository": {
     "type": "git",
@@ -25,5 +34,14 @@
   "bugs": {
     "url": "https://github.com/Cdriscoll621/Final-Project/issues"
   },
+<<<<<<< HEAD
   "homepage": "https://github.com/Cdriscoll621/Final-Project#readme"
+=======
+  "homepage": "https://github.com/Cdriscoll621/Final-Project#readme",
+  "dependencies": {
+    "mysql2": "^1.5.2",
+    "sequelize": "^4.33.4",
+    "sequelize-cli": "^4.0.0"
+  }
+>>>>>>> 92efe1145ecd97a8668891e8c66df0fad6334ca6
 }
