@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from "./Components/Header/Header";
 import Enter from "./Components/Enter/Enter";
+import Form from "./Components/Form/Form"
 
 class App extends Component {
     render() {
@@ -16,28 +17,11 @@ class App extends Component {
 
                  <Enter>
 
-                    <form>
-                        <label>
-                            Username:
-                            <input type="text" name="name" />
-                        </label>
-                        <label>
-                            Password:
-                            <input type="text" name="name" />
-                        </label>
-                        <input type="submit" value="Login" />
-                        <input type="submit" value="Sign Up" />
-                    </form>
+                    <Form>
 
-
-
-
+                    </Form>
                  </Enter>
-
             </div>
-
-
-
         );
 
     }

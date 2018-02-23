@@ -1,3 +1,4 @@
 body {
-    background-color: lavender;
+    background-image: url("dog1.png");
+    background-size: cover;
 }
