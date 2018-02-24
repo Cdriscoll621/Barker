@@ -28,7 +28,11 @@ class SubmitForm extends React.Component {
                     <div className='modal-header'>
                         <p>Sign Up</p>
                     </div>
-                    <div className='modal-body'></div>
+                    <div className='modal-body'>
+
+
+
+                    </div>
                     <div className='modal-footer'></div>
                     <button onClick={this.props.handleSubmit}>Sign Up</button>
                 </div>
