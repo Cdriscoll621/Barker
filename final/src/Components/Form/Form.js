@@ -71,10 +71,15 @@ class Form extends Component {
         });
     }
 
+    handleSubmit = event => {
+        event.preventDefault();
+        if (!this.state.signup) this.props.history.push(`/profile/${this.state.email}`);
+      }
+
     render () {
         return (
             <div className='flex-container flex-end flex-space'>
-                <div className="form">
+                <div className="form" onSubmit={this.handleSubmit}>
                     <form className="flex-col">
                         <h2>{this.state.signup ? "Sign Up" : "Log In"}</h2>
                         <div className="panel panel-default">
