@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { FormErrors } from './FormErrors';
+import API from "../../utils/API";
 import './Form.css';
 
 class Form extends Component {
@@ -72,7 +73,12 @@ class Form extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        if (!this.state.signup) this.props.history.push(`/profile/${this.state.email}`);
+        if (!this.state.signup) {
+            let userObj = {email: this.state.email, password: this.state.password};
+            API.logIn(userObj)
+              .then(res => this.props.history.push(`/profile/${res.data.users[0].id}`))
+              .catch(err => console.log(err));
+        }
       }
 
     render () {
