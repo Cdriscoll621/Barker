@@ -70,9 +70,14 @@ class Form extends Component {
         });
     }
 
+    handleSubmit = event => {
+        event.preventDefault();
+        if (!this.state.signup) this.props.history.push(`/profile/${this.state.email}`);
+      }
+
     render () {
         return (
-            <div className="form">
+            <div className="form" onSubmit={this.handleSubmit}>
                 <form className="flex-col">
                     <h2>{this.state.signup ? "Sign Up" : "Log In"}</h2>
                     <div className="panel panel-default">
@@ -101,7 +106,7 @@ class Form extends Component {
                                        value={this.state.passwordTwo}
                                        onChange={this.handleUserInput}  />
                             </div>
-                            <button type="submit" className="button" disabled={!this.state.formValid}>Sign up</button>
+                            <button id="signUp" type="submit" className="button" disabled={!this.state.formValid}>Sign up</button>
                             <span onClick={this.toggleState}>
                                 <p>Already have an account?<br/>Click here to log in.</p>
                             </span>
@@ -114,7 +119,7 @@ class Form extends Component {
                                        value={this.state.password}
                                        onChange={this.handleUserInput}  />
                             </div>
-                            <button type="submit" className="button" disabled={!this.state.formValid}>Log In</button>
+                            <button id="logIn" type="submit" className="button" disabled={!this.state.formValid}>Log In</button>
                             <span onClick={this.toggleState}>
                                 <p>Don't have an account yet?<br/>Click here to sign up.</p>
                             </span>
