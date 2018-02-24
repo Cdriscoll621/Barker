@@ -6,7 +6,6 @@ import "./SubmitForm.css";
 class SubmitForm extends React.Component {
     constructor (props) {
         super(props)
-
         this.state = {
             modalOpened: false
         }
@@ -31,7 +30,7 @@ class SubmitForm extends React.Component {
                     </div>
                     <div className='modal-body'></div>
                     <div className='modal-footer'></div>
-                    <button>Sign Up</button>
+                    <button onClick={this.props.handleSubmit}>Sign Up</button>
                 </div>
 
                 <div className={coverClass} onClick={this.modalToggle}></div>

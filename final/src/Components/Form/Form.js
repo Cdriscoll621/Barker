@@ -80,6 +80,7 @@ class Form extends Component {
               .then(res => this.props.history.push(`/profile/${res.data.users[0].id}`))
               .catch(err => console.log(err));
         }
+        else console.log("test");
       }
 
     render () {
@@ -114,7 +115,9 @@ class Form extends Component {
                                            value={this.state.passwordTwo}
                                            onChange={this.handleUserInput}  />
                                 </div>
-                                <SubmitForm/>
+                                <SubmitForm
+                                    handleSubmit={this.handleSubmit}
+                                />
                                 {/*<button type="submit" className="button" disabled={!this.modalToggle}>Sign up</button>*/}
                                 <span onClick={this.toggleState}>
                                     <p>Already have an account?<br/>Click here to log in.</p>
