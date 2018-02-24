@@ -80,7 +80,7 @@ class Form extends Component {
               .then(res => this.props.history.push(`/profile/${res.data.users[0].id}`))
               .catch(err => console.log(err));
         }
-        else console.log("click");
+        else console.log("test");
       }
 
     render () {
