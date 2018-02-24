@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './App.css';
 import Header from "./Components/Header/Header";
+import SubmitForm from "./Components/SubmitForm/SubmitForm";
 import Form from "./Components/Form/Form";
 import Profile from "./Components/Profile";
 
