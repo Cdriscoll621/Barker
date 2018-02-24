@@ -31,6 +31,7 @@ class SubmitForm extends React.Component {
                     </div>
                     <div className='modal-body'></div>
                     <div className='modal-footer'></div>
+                    <button>Sign Up</button>
                 </div>
 
                 <div className={coverClass} onClick={this.modalToggle}></div>
