@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { FormErrors } from './FormErrors';
 import './Form.css';
+import SubmitForm from "../SubmitForm/SubmitForm";
 
 class Form extends Component {
     constructor (props) {
@@ -72,55 +73,58 @@ class Form extends Component {
 
     render () {
         return (
-            <div className="form">
-                <form className="flex-col">
-                    <h2>{this.state.signup ? "Sign Up" : "Log In"}</h2>
-                    <div className="panel panel-default">
-                        <FormErrors formErrors={this.state.formErrors} />
-                    </div>
-                    <div className={`input-size form-group ${this.errorClass(this.state.formErrors.email)}`}>
-                        <label htmlFor="email">Email address</label>
-                        <input type="email" required className="form-control" name="email"
-                               placeholder="Email"
-                               value={this.state.email}
-                               onChange={this.handleUserInput}  />
-                    </div>
-                    {this.state.signup
-                      ? <React.Fragment>
-                            <div className={`input-size form-group ${this.errorClass(this.state.formErrors.password)}`}>
-                                <label htmlFor="password">Password</label>
-                                <input type="password" className="form-control" name="password"
-                                       placeholder="Password"
-                                       value={this.state.password}
-                                       onChange={this.handleUserInput}  />
-                            </div>
-                            <div className={`input-size form-group ${this.errorClass(this.state.formErrors.passwordTwo)}`}>
-                                <label htmlFor="password">Confirm Password</label>
-                                <input type="password" className="form-control" name="passwordTwo"
-                                       placeholder="Password"
-                                       value={this.state.passwordTwo}
-                                       onChange={this.handleUserInput}  />
-                            </div>
-                            <button type="submit" className="button" disabled={!this.state.formValid}>Sign up</button>
-                            <span onClick={this.toggleState}>
-                                <p>Already have an account?<br/>Click here to log in.</p>
-                            </span>
-                        </React.Fragment>
-                      : <React.Fragment>
-                            <div className={`input-size form-group ${this.errorClass(this.state.formErrors.password)}`}>
-                                <label htmlFor="password">Password</label>
-                                <input type="password" className="form-control" name="password"
-                                       placeholder="Password"
-                                       value={this.state.password}
-                                       onChange={this.handleUserInput}  />
-                            </div>
-                            <button type="submit" className="button" disabled={!this.state.formValid}>Log In</button>
-                            <span onClick={this.toggleState}>
-                                <p>Don't have an account yet?<br/>Click here to sign up.</p>
-                            </span>
-                        </React.Fragment>
-                    }
-                </form>
+            <div className='flex-container flex-end flex-space'>
+                <div className="form">
+                    <form className="flex-col">
+                        <h2>{this.state.signup ? "Sign Up" : "Log In"}</h2>
+                        <div className="panel panel-default">
+                            <FormErrors formErrors={this.state.formErrors} />
+                        </div>
+                        <div className={`input-size form-group ${this.errorClass(this.state.formErrors.email)}`}>
+                            <label htmlFor="email">Email address</label>
+                            <input type="email" required className="form-control" name="email"
+                                   placeholder="Email"
+                                   value={this.state.email}
+                                   onChange={this.handleUserInput}  />
+                        </div>
+                        {this.state.signup
+                          ? <React.Fragment>
+                                <div className={`input-size form-group ${this.errorClass(this.state.formErrors.password)}`}>
+                                    <label htmlFor="password">Password</label>
+                                    <input type="password" className="form-control" name="password"
+                                           placeholder="Password"
+                                           value={this.state.password}
+                                           onChange={this.handleUserInput}  />
+                                </div>
+                                <div className={`input-size form-group ${this.errorClass(this.state.formErrors.passwordTwo)}`}>
+                                    <label htmlFor="password">Confirm Password</label>
+                                    <input type="password" className="form-control" name="passwordTwo"
+                                           placeholder="Password"
+                                           value={this.state.passwordTwo}
+                                           onChange={this.handleUserInput}  />
+                                </div>
+                                <SubmitForm/>
+                                {/*<button type="submit" className="button" disabled={!this.modalToggle}>Sign up</button>*/}
+                                <span onClick={this.toggleState}>
+                                    <p>Already have an account?<br/>Click here to log in.</p>
+                                </span>
+                            </React.Fragment>
+                          : <React.Fragment>
+                                <div className={`input-size form-group ${this.errorClass(this.state.formErrors.password)}`}>
+                                    <label htmlFor="password">Password</label>
+                                    <input type="password" className="form-control" name="password"
+                                           placeholder="Password"
+                                           value={this.state.password}
+                                           onChange={this.handleUserInput}  />
+                                </div>
+                                <button type="submit" className="button" disabled={!this.state.formValid}>Log In</button>
+                                <span onClick={this.toggleState}>
+                                    <p>Don't have an account yet?<br/>Click here to sign up.</p>
+                                </span>
+                            </React.Fragment>
+                        }
+                    </form>
+                </div>
             </div>
         )
     }

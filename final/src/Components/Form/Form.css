@@ -4,6 +4,14 @@
 
 }
 
+.flex-container {
+    display: flex;
+}
+
+.flex-space {
+    justify-content: space-around;
+}
+
 .flex-col {
     display: flex;
     flex-direction: column;
@@ -14,8 +22,8 @@
     width: 300px;
     height: 500px;
     /*background-color: #F7C331;*/
-    margin-left: 835px;
-    margin-top: 15px;
+    margin-left: 740px;
+    /*margin-top: 15px;*/
     border-radius: 20px;
     text-align: center;
     box-shadow: 5px 10px 20px #DCC7AA;
