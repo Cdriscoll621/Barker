@@ -29,7 +29,11 @@ class SubmitForm extends React.Component {
                     <div className='modal-header'>
                         <p>Sign Up</p>
                     </div>
-                    <div className='modal-body'></div>
+                    <div className='modal-body'>
+
+
+
+                    </div>
                     <div className='modal-footer'></div>
                     <button>Sign Up</button>
                 </div>
