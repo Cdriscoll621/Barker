@@ -9,41 +9,44 @@ module.exports = {
       Example:
       return queryInterface.createTable('users', { id: Sequelize.INTEGER });
     */
-   return queryInterface.creatTable('dog',{
-    id: {type: Sequelized.INTEGER,
+   return queryInterface.createTable('dog',{
+    id: {type: Sequelize.INTEGER,
       allowNull: false,
       autoIncrement: true,
       primaryKey:true
     },
-    owner_id: {type: Sequelized.INT,
+    owner_id: {type: Sequelize.INTEGER,
         allowNull: false,
-        REFERENCES: {model: USER,
-                        key: id}
+        REFERENCES: {model: "user",
+                        key: "id"}
     },
-    dog_name: {type: Sequelized.STRING(50),
+    dog_name: {type: Sequelize.STRING,
         allowNull: false
     },
-    breed: {type: Sequelized.STRING(50),
+    breed: {type: Sequelize.STRING,
         allowNull: true
     },
-    sex: {type: Sequelized.STRING(1),
+    sex: {type: Sequelize.STRING,
         allowNull: false
     },
-    age: {type: Sequelized.DATEONLY, 
+    age: {type: Sequelize.DATEONLY, 
         allowNull: false
     },
-    dog_weight: {type: Sequelized.INT,
+    dog_weight: {type: Sequelize.INTEGER,
         allowNull: false,
     },
-    demeanor: {type: Sequelized.STRING(25),
+    demeanor: {type: Sequelize.STRING,
         allowNull: false
     },
-    energylvl: {type: Sequelized.STRING(25),
+    energylvl: {type: Sequelize.STRING,
         allowNull:false
     },
-    size: {type: Sequelized.STRING(2), /* sm, md, lg, xl */
+    size: {type: Sequelize.STRING, /* sm, md, lg, xl */
         allowNull: false
-    }  
+    },
+    createdAt: Sequelize.DATE,
+    updatedAt: Sequelize.DATE,
+
   })
   },
 

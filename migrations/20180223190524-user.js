@@ -9,42 +9,47 @@ module.exports = {
       Example:
       return queryInterface.createTable('users', { id: Sequelize.INTEGER });
     */
-   return queryInterface.creatTable('user',{
-    id: {type: Sequelized.INTEGER,
+   return queryInterface.createTable('user',{
+    id: {type: Sequelize.INTEGER,
       allowNull: false,
       autoIncrement: true,
       primaryKey:true
     },
-    user_login: {type: Sequelized.STRING,
-        allowNull: false
+    user_login: {type: Sequelize.STRING,
+        allowNull: false,
+        validate: {isEmail: true
+        }
+        
     },
-    user_passwd: {type: Sequelized.STRING(50),
+    user_passwd: {type: Sequelize.STRING(50),
         allowNull: false,
     },
-    fname: {type: Sequelized.STRING,
+    fname: {type: Sequelize.STRING,
         aloowNull:true,
     },
-    lname: {type: Sequelized.STRING,
+    lname: {type: Sequelize.STRING,
         allowNull:true
     },
-    addr1: {type: Sequelized.STRING,
+    addr1: {type: Sequelize.STRING,
         allowNull: true
     },
-    addr2: {type: Sequelized.STRING,
+    addr2: {type: Sequelize.STRING,
         allowNull: true
     },
-    city: {type: Sequelized.STRING(25),
+    city: {type: Sequelize.STRING(25),
         allowNull: true
     },
-    state: {type: Sequelized.STRING(2),
+    state: {type: Sequelize.STRING(2),
         allowNull: true
     },
-    zip: {type: Sequelized.STRING(10),
+    zip: {type: Sequelize.STRING(10),
         allowNull: true
     },
-    owner_profile: {type: Sequelized.STRING,
+    owner_profile: {type: Sequelize.STRING,
         allowNull: true
-    } 
+    }, 
+    createdAt: Sequelize.DATE,
+    updatedAt: Sequelize.DATE,
    });
   },
 
