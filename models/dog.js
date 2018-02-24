@@ -1,41 +1,42 @@
 module.exports = function(sequelize, DataTypes) {
   var Dog = sequelize.define("Dog", {
-id: {type: Sequelize.INTEGER,
+id: {type: DataTypes.INTEGER,
       allowNull: false,
       autoIncrement: true,
       primaryKey:true
     },
-    owner_id: {type: Sequelize.INTEGER,
+    owner_id: {type: DataTypes.INTEGER,
         allowNull: false,
         REFERENCES: {model: "user",
                         key: "id"}
     },
-    dog_name: {type: Sequelize.STRING,
+    dog_name: {type: DataTypes.STRING,
         allowNull: false
     },
-    breed: {type: Sequelize.STRING,
+    breed: {type: DataTypes.STRING,
         allowNull: true
     },
-    sex: {type: Sequelize.STRING,
+    sex: {type: DataTypes.STRING,
         allowNull: false
     },
-    age: {type: Sequelize.DATEONLY, 
+    age: {type: DataTypes.DATEONLY, 
         allowNull: false
     },
-    dog_weight: {type: Sequelize.INTEGER,
+    dog_weight: {type: DataTypes.INTEGER,
         allowNull: false,
     },
-    demeanor: {type: Sequelize.STRING,
+    demeanor: {type: DataTypes.STRING,
         allowNull: false
     },
-    energylvl: {type: Sequelize.STRING,
+    energylvl: {type: DataTypes.STRING,
         allowNull:false
     },
-    size: {type: Sequelize.STRING, /* sm, md, lg, xl */
+    size: {type: DataTypes.STRING, /* sm, md, lg, xl */
         allowNull: false
     },
-    createdAt: Sequelize.DATE,
-    updatedAt: Sequelize.DATE,
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
+    
   });
   return Dog;
 };

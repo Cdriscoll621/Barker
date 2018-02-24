@@ -1,45 +1,45 @@
 module.exports = function(sequelize, DataTypes) {
-  var Owner = sequelize.define("Owner", {
-    id: {type: Sequelize.INTEGER,
+  var user = sequelize.define("user", {
+    id: {type: DataTypes.INTEGER,
       allowNull: false,
       autoIncrement: true,
       primaryKey:true
     },
-    user_login: {type: Sequelize.STRING,
+    user_login: {type: DataTypes.STRING,
         allowNull: false,
         validate: {isEmail: true
         }  
     },
-    user_passwd: {type: Sequelize.STRING(50),
+    user_passwd: {type: DataTypes.STRING(50),
         allowNull: false,
     },
-    fname: {type: Sequelize.STRING,
+    fname: {type: DataTypes.STRING,
         aloowNull:true,
     },
-    lname: {type: Sequelize.STRING,
+    lname: {type: DataTypes.STRING,
         allowNull:true
     },
-    addr1: {type: Sequelize.STRING,
+    addr1: {type: DataTypes.STRING,
         allowNull: true
     },
-    addr2: {type: Sequelize.STRING,
+    addr2: {type: DataTypes.STRING,
         allowNull: true
     },
-    city: {type: Sequelize.STRING(25),
+    city: {type: DataTypes.STRING(25),
         allowNull: true
     },
-    state: {type: Sequelize.STRING(2),
+    state: {type: DataTypes.STRING(2),
         allowNull: true
     },
-    zip: {type: Sequelize.STRING(10),
+    zip: {type: DataTypes.STRING(10),
         allowNull: true
     },
-    owner_profile: {type: Sequelize.STRING,
+    owner_profile: {type: DataTypes.STRING,
         allowNull: true
     }, 
-    createdAt: Sequelize.DATE,
-    updatedAt: Sequelize.DATE,
-    }
+    createdAt: DataTypes.DATE,
+    updatedAt: DataTypes.DATE,
+    
   });
-  return Dog;
+  return user;
 };
