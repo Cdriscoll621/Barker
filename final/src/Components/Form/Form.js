@@ -11,7 +11,7 @@ class Form extends Component {
             email: '',
             password: '',
             passwordTwo: '',
-            formErrors: {email: '', password: '', passwordTwo: ''},
+            formErrors: {email: '', password: '', passwordTwo: '', invalid: ''},
             emailValid: false,
             passwordValid: false,
             formValid: false,
@@ -74,18 +74,30 @@ class Form extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
-        let userObj = {email: this.state.email, password: this.state.password};
+        let userObj = {email: this.state.email, password: this.state.password}, fieldValidationErrors = this.state.formErrors;
         if (!this.state.signup) {
             API.logIn(userObj)
-              .then(res => this.props.history.push(`/profile/${res.data.users[0].id}`))
+              .then(res => {
+                if (res.data.users[0].id) this.props.history.push(`/profile/${res.data.users[0].id}`);
+                else {
+                    fieldValidationErrors.invalid = 'email or password';
+                    this.setState({ formErrors: fieldValidationErrors })
+                }
+              })
               .catch(err => console.log(err));
         }
         else {
             API.signUp(userObj)
-              .then(res => this.setState({userId: res.data.users[0].id, modal: true}))
+              .then(res => {
+                if (res.data.users[0].id) this.setState({userId: res.data.users[0].id, modal: true});
+                else {
+                    fieldValidationErrors.email = 'is already in use';
+                    this.setState({ formErrors: fieldValidationErrors })
+                }
+              })
               .catch(err => console.log(err));
         }
-      }
+    }
 
     render () {
         return (
