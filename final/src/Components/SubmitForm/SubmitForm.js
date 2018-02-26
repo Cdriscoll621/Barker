@@ -46,7 +46,7 @@ class SubmitForm extends React.Component {
                         </div>
                         
                         <div className='modal-body'>
-                            {/*form stuff here*/}
+                            {/*form fields go here*/}
                         </div>
                         <div className='modal-footer'></div>
                         <button type="submit" onClick={this.handleSubmit}>Sign Up</button>

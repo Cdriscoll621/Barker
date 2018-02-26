@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { FormErrors } from './FormErrors';
 import API from "../../utils/API";
 import './Form.css';
-import SubmitForm from "../SubmitForm/SubmitForm";
+import SubmitForm from "../SubmitForm";
 
 class Form extends Component {
     constructor (props) {
@@ -119,7 +119,6 @@ class Form extends Component {
                                            value={this.state.passwordTwo}
                                            onChange={this.handleUserInput}  />
                                 </div>
-                                
                                 <button type="submit" className="button" disabled={!this.state.formValid}>Sign up</button>
                                 <span onClick={this.toggleState}>
                                     <p>Already have an account?<br/>Click here to log in.</p>

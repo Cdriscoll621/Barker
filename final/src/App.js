@@ -11,15 +11,11 @@ class App extends Component {
         return (
             <Router>
                 <div>
-                    <Header>
-                        <p>
-                            Pet Finder
-                        </p>
-                    </Header>
-                        <Switch>
-                            <Route exact path="/" component={Form} />
-                            <Route path="/profile/:userId" component={Profile} />
-                        </Switch>
+                    <Header />
+                    <Switch>
+                        <Route exact path="/" component={Form} />
+                        <Route path="/profile/:userId" component={Profile} />
+                    </Switch>
                 </div>
             </Router>
         );
