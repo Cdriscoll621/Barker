@@ -74,13 +74,17 @@ class Form extends Component {
 
     handleSubmit = event => {
         event.preventDefault();
+        let userObj = {email: this.state.email, password: this.state.password};
         if (!this.state.signup) {
-            let userObj = {email: this.state.email, password: this.state.password};
             API.logIn(userObj)
               .then(res => this.props.history.push(`/profile/${res.data.users[0].id}`))
               .catch(err => console.log(err));
         }
-        else console.log("test");
+        else {
+            API.signUp(userObj)
+              .then(res => this.setState({userId: res.data.users[0].id, modal: true}))
+              .catch(err => console.log(err));
+        }
       }
 
     render () {
@@ -115,10 +119,8 @@ class Form extends Component {
                                            value={this.state.passwordTwo}
                                            onChange={this.handleUserInput}  />
                                 </div>
-                                <SubmitForm
-                                    handleSubmit={this.handleSubmit}
-                                />
-                                {/*<button type="submit" className="button" disabled={!this.modalToggle}>Sign up</button>*/}
+                                
+                                <button type="submit" className="button" disabled={!this.state.formValid}>Sign up</button>
                                 <span onClick={this.toggleState}>
                                     <p>Already have an account?<br/>Click here to log in.</p>
                                 </span>
@@ -138,6 +140,11 @@ class Form extends Component {
                             </React.Fragment>
                         }
                     </form>
+                    <SubmitForm
+                        history={this.props.history}
+                        modal={this.state.modal}
+                        userId={this.state.userId}
+                    />
                 </div>
             </div>
         )

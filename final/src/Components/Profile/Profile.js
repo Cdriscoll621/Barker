@@ -3,7 +3,7 @@ import ProfileInfo from "../ProfileInfo";
 import "./Profile.css";
 
 let userObj = {
-  firstName: "Alex",
+  firstName: "",
   lastName: "",
   address: "",
   city: "",

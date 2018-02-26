@@ -9,12 +9,34 @@ import MockAdapter from 'axios-mock-adapter';
     ]
   });
 
+  mock.onPost('/api/signup').reply(200, {
+    users: [
+      { id: 1 }
+    ]
+  });
+
+  mock.onPost('/api/newuser').reply(200, {
+    users: [
+      { id: 1 }
+    ]
+  });
+
 export default {
 
   logIn: function(loginData) {
     //return "1";
     return axios.get("/api/login", loginData);
   },
+
+  signUp: function(signupData) {
+    //return "1";
+    return axios.post("/api/signup", signupData);
+  },  
+
+  createUser: function(userData) {
+    //return "1";
+    return axios.post("/api/newuser", userData);
+  },  
   /*// Gets the book with the given id
   getBook: function(id) {
     return axios.get("/api/books/" + id);
