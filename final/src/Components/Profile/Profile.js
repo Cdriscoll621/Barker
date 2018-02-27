@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ProfileInfo from "../ProfileInfo";
+import Header from "../Header";
 import "./Profile.css";
 
 let userObj = {
@@ -29,10 +30,16 @@ class Profile extends Component {
   	this.setState({ user: userObj }, ()=>{console.log(this.state.user);});
   }
 
+  matchButton = () => {
+  	this.props.history.push(`/discover/${this.props.match.params.userId}`)
+  }
+
   render() {
     return (
     	<div>
-    		<div>
+    		<button className="button" onClick={this.matchButton}>Find a Match!</button>
+    		<Header><h3>Your Profile</h3></Header>
+    		<div className="userInfo">
 	      		<ProfileInfo
 					title={"First Name"}
 					type={"text"}

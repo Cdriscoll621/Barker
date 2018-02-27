@@ -21,6 +21,12 @@ import MockAdapter from 'axios-mock-adapter';
     ]
   });
 
+  mock.onPost('/api/newuser').reply(200, {
+    users: [
+      { id: 2 }, { id: 3 }, { id: 4 }
+    ]
+  });
+
 export default {
 
   logIn: function(loginData) {
@@ -37,6 +43,11 @@ export default {
     //return "1";
     return axios.post("/api/newuser", userData);
   },  
+
+  findMatches: function(searchData) {
+    //return "1";
+    return axios.get("/api/matches", searchData);
+  },
   /*// Gets the book with the given id
   getBook: function(id) {
     return axios.get("/api/books/" + id);
