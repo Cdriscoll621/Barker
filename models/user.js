@@ -1,3 +1,5 @@
+var bcrypt = require ("bcrypt");
+
 module.exports = function(sequelize, DataTypes) {
   var user = sequelize.define("user", {
     id: {type: DataTypes.INTEGER,
@@ -10,7 +12,7 @@ module.exports = function(sequelize, DataTypes) {
         validate: {isEmail: true
         }  
     },
-    user_passwd: {type: DataTypes.STRING(50),
+    user_passwd: {type: DataTypes.STRING,
         allowNull: false,
     },
     fname: {type: DataTypes.STRING,
@@ -41,5 +43,18 @@ module.exports = function(sequelize, DataTypes) {
     updatedAt: DataTypes.DATE,
     
   });
+  user.beforeCreate((user, options) => {
+        return bcrypt.hash(user.user_passwd, 10)
+            .then(hash => {
+                user.user_passwd = hash;
+            })
+            .catch(err => { 
+                throw new Error(); 
+            });
+    });
+   user.validate((user,options)=>{
+       return bcrypt.compareSync(user.user_passwd, this.user_passwd)
+
+   })
   return user;
 };

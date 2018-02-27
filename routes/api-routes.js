@@ -1,57 +1,57 @@
-// Requiring our models
-var db = require("../models");
+var User = require('./models/user');
+module.exports = function(app, passport){
+	app.get('/', function(req, res){
+		res.render('index.ejs');
+	});
 
-// Routes
-// =============================================================
-module.exports = (app)=> {
+	app.get('/login', function(req, res){
+		res.render('login.ejs', { message: req.flash('loginMessage') });
+	});
+	app.post('/login', passport.authenticate('local-login', {
+		successRedirect: '/profile',
+		failureRedirect: '/login',
+		failureFlash: true
+	}));
 
-  // GET route for getting all of the todos
-  app.get("/api/info", (req, res)=> {
-    // findAll returns all entries for a table when used with no options
-    db.User.findAll({
-      include: [db.Dog]
-    }).then((dbDogs)=> {
-      res.json(dbDogs);
-    });
-  });
+	app.get('/signup', function(req, res){
+		res.render('signup.ejs', { message: req.flash('signupMessage') });
+	});
 
-  // POST route for saving a new todo
-  app.post("/api/create", (req, res)=> {
-    db.user.create(req.body).then((dbDogs)=> {
-      // We have access to the new todo as an argument inside of the callback function
-      res.json(dbDogs);
-    });
-  });
 
-  // PUT route for updating todos. We can get the updated todo data from req.body
-  app.put("/api/update", (req, res)=> {
-    db.user.update(req.body, {
-      where: {
-        id: id
-      }
-    })
-    .then((u)=> {
-      res.json(u);
-    });
-  });
+	app.post('/signup', passport.authenticate('local-signup', {
+		successRedirect: '/',
+		failureRedirect: '/signup',
+		failureFlash: true
+	}));
 
-  app.put("/api/todos", (req, res)=> {
-    db.Dog.update({
-      dog_name: req.dog_name.text,
-      breed: req.breed.text,
-      sex: req.sex.text,
-      age: req.age.text,
-      dog_weight:  req.dog_weight.text,
-      demeanor: req.demeanor.text,
-      energylvl:   req.energylvl.text,
-      size: req.size.text
-    }, {
-      where: {
-        id: req.body.id
-      }
-    }).then((dbDogs)=> {
-      res.json(dbDogs);
-    });
-  });
+	app.get('/profile', isLoggedIn, function(req, res){
+		res.render('profile.ejs', { user: req.user });
+	});
 
+
+
+	app.get('/:username/:password', function(req, res){
+		var newUser = new User();
+		newUser.local.username = req.params.username;
+		newUser.local.password = req.params.password;
+		console.log(newUser.local.username + " " + newUser.local.password);
+		newUser.save(function(err){
+			if(err)
+				throw err;
+		});
+		res.send("Success!");
+	});
+
+	app.get('/logout', function(req, res){
+		req.logout();
+		res.redirect('/');
+	})
 };
+
+function isLoggedIn(req, res, next) {
+	if(req.isAuthenticated()){
+		return next();
+	}
+
+	res.redirect('/login');
+}
