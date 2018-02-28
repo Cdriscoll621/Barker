@@ -7,12 +7,22 @@ module.exports = (app, passport)=>{
 		res.render('index.ejs');
 	});
 
-	app.get('/login', (req, res)=>{
-        db.findOne({where: {user_login : req.body.user_login}
+	app.post('/login', (req, res)=>{
+        db.user.findOne({where: {user_login : req.body.user_login}
+        }).then((user)=>{
+            bcrypt.compare(req.body.user_passwd, user.user_passwd, (err, loginSuccess)=>{
+               if (loginSuccess){ 
+                   res.json({status: "succes"})
+                }
+               else{
+                    res.json({status: "failure"})
+               }
+        
+            })
         });
-        bcrypt.compareSync(user.user_passwd, hash)  
+        
     });
-	});
+	
     
     app.post('/login', passport.authenticate('local-login', {
 		successRedirect: '/profile',
