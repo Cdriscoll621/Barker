@@ -4,10 +4,16 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
+    "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
     "express": "^4.16.2",
+    "express-session": "^1.15.6",
     "fs": "0.0.1-security",
     "mysql": "^2.15.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "sequelize": "^4.33.4"
   },
@@ -20,25 +26,22 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Cdriscoll621/Final-Project.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Cdriscoll621/Final-Project/issues"
-  },
-
-  "homepage": "https://github.com/Cdriscoll621/Final-Project#readme",
-
-  "dependencies": {
-    "mysql2": "^1.5.2",
-    "sequelize": "^4.33.4",
-    "sequelize-cli": "^4.0.0"
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/Cdriscoll621/Final-Project.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/Cdriscoll621/Final-Project/issues"
+    },
+    "homepage": "https://github.com/Cdriscoll621/Final-Project#readme",
+    "dependencies": {
+      "mysql2": "^1.5.2",
+      "sequelize": "^4.33.4",
+      "sequelize-cli": "^4.0.0"
+    }
   }
-}
 }

@@ -1,57 +1,82 @@
 // Requiring our models
 var db = require("../models");
+var bcrypt = require ("bcrypt");
 
-// Routes
-// =============================================================
-module.exports = (app)=> {
+module.exports = (app, passport)=>{
+	app.get('/', (req, res)=>{
+		res.render('index.ejs');
+	});
 
-  // GET route for getting all of the todos
-  app.get("/api/info", (req, res)=> {
-    // findAll returns all entries for a table when used with no options
-    db.User.findAll({
-      include: [db.Dog]
-    }).then((dbDogs)=> {
-      res.json(dbDogs);
+	app.post('/login', (req, res)=>{
+        db.user.findOne({where: {user_login : req.body.user_login}
+        }).then((user)=>{
+            bcrypt.compare(req.body.user_passwd, user.user_passwd, (err, loginSuccess)=>{
+               if (loginSuccess){ 
+                   res.json({status: "succes"})
+                }
+               else{
+                    res.json({status: "failure"})
+               }
+        
+            })
+        });
+        
     });
-  });
+	
+    
+    app.post('/login', passport.authenticate('local-login', {
+		successRedirect: '/profile',
+		failureRedirect: '/login',
+		failureFlash: true
+	}));
 
-  // POST route for saving a new todo
-  app.post("/api/create", (req, res)=> {
-    db.user.create(req.body).then((dbDogs)=> {
-      // We have access to the new todo as an argument inside of the callback function
-      res.json(dbDogs);
+	app.post('/signup', (req, res)=>{
+		
+        const {user_login, user_passwd} = req.body;
+        console.log(req.body);
+        bcrypt.hash(user_passwd, 10, (err, hash)=>{
+            console.log(hash);
+            db.user.create({user_login: user_login, user_passwd: hash})
+            .then(newUser => {
+                res.json(newUser);
+            })   
+        })  
     });
-  });
 
-  // PUT route for updating todos. We can get the updated todo data from req.body
-  app.put("/api/update", (req, res)=> {
-    db.user.update(req.body, {
-      where: {
-        id: id
-      }
-    })
-    .then((u)=> {
-      res.json(u);
-    });
-  });
 
-  app.put("/api/todos", (req, res)=> {
-    db.Dog.update({
-      dog_name: req.dog_name.text,
-      breed: req.breed.text,
-      sex: req.sex.text,
-      age: req.age.text,
-      dog_weight:  req.dog_weight.text,
-      demeanor: req.demeanor.text,
-      energylvl:   req.energylvl.text,
-      size: req.size.text
-    }, {
-      where: {
-        id: req.body.id
-      }
-    }).then((dbDogs)=> {
-      res.json(dbDogs);
-    });
-  });
+	app.post('/signup', passport.authenticate('local-signup', {
+		successRedirect: '/',
+		failureRedirect: '/signup',
+		failureFlash: true
+	}));
 
+	app.get('/profile', isLoggedIn, (req, res)=>{
+		res.render('profile.ejs', { user: req.user });
+	});
+
+
+
+	app.get('/:username/:password', (req, res)=>{
+		var newUser = new User();
+		newUser.local.username = req.params.username;
+		newUser.local.password = req.params.password;
+		console.log(newUser.local.username + " " + newUser.local.password);
+		newUser.save((err)=>{
+			if(err)
+				throw err;
+		});
+		res.send("Success!");
+	});
+
+	app.get('/logout', (req, res)=>{
+		req.logout();
+		res.redirect('/');
+	})
 };
+
+ const isLoggedIn = (req, res, next)=> {
+	if(req.isAuthenticated()){
+		return next();
+	} 
+	res.redirect('/login');
+} 

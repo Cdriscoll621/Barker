@@ -9,7 +9,11 @@
 
 // =============================================================
 var express = require("express");
-var bodyParser = require("body-parser");
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var passport = require('passport');
+var bodyParser = require('body-parser');
+var flash = require('connect-flash');
 
 // Sets up the Express App
 // =============================================================
@@ -20,18 +24,30 @@ var PORT = process.env.PORT || 3000;
 // Requiring our models for syncing
 var db = require("./models");
 
-// Sets up the Express app to handle data parsing
+require('./config/passport')(passport);
+
+// Sets up all dependecies
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+app.use(session({secret: 'anystringoftext',
+                 saveUninitialized: true,
+                 resave: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
 // Static directory
 app.use(express.static("public"));
 
+//View Engine
+app.set('view engine', 'ejs')
 // Routes
 // =============================================================
-require("./routes/api-routes.js")(app);
+require("./routes/api-routes.js")(app, passport);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
