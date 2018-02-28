@@ -1,17 +1,17 @@
 var LocalStrategy = require('passport-local').Strategy;
 
 
-var User = require('../app/models/user');
+var User = require('../models/user.js');
 
-module.exports = function(passport) {
+module.exports = (passport) => {
 
 
-	passport.serializeUser(function(user, done){
+	passport.serializeUser((user, done)=>{
 		done(null, user.id);
 	});
 
-	passport.deserializeUser(function(id, done){
-		user.findById(id, function(err, user){
+	passport.deserializeUser((id, done)=>{
+		user.findById(id, (err, user)=>{
 			done(err, user);
 		});
 	});
@@ -22,9 +22,9 @@ module.exports = function(passport) {
 		passwordField: 'password',
 		passReqToCallback: true
 	},
-	function(req, email, password, done){
-		process.nextTick(function(){
-			User.findOne({'local.user_login': email}, function(err, user){
+	(req, email, password, done)=>{
+		process.nextTick(()=>{
+			User.findOne({'local.user_login': email}, (err, user)=>{
 				if(err)
 					return done(err);
 				if(user){
@@ -34,7 +34,7 @@ module.exports = function(passport) {
 					newUser.local.user_login = email;
 					newUser.local.user_passwrd = newUser.generateHash(password);
 
-					newUser.save(function(err){
+					newUser.save((err)=>{
 						if(err)
 							throw err;
 						return done(null, newUser);
@@ -50,9 +50,9 @@ module.exports = function(passport) {
 			passwordField: 'password',
 			passReqToCallback: true
 		},
-		function(req, email, password, done){
-			process.nextTick(function(){
-				User.findOne({ 'local.username': email}, function(err, user){
+		(req, email, password, done)=>{
+			process.nextTick(()=>{
+				User.findOne({ 'local.username': email}, (err, user)=>{
 					if(err)
 						return done(err);
 					if(!user)

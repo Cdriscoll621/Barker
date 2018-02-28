@@ -24,7 +24,7 @@ var PORT = process.env.PORT || 3000;
 // Requiring our models for syncing
 var db = require("./models");
 
-require('./config/passport')(paassport);
+require('./config/passport')(passport);
 
 // Sets up all dependecies
 app.use(cookieParser());
