@@ -30,7 +30,7 @@ class SubmitForm extends React.Component {
         let userObj = this.state;
         userObj.userId = this.props.userId;
         console.log(userObj);
-            API.logIn(userObj)
+            API.createUser(userObj)
               .then(res => this.props.history.push(`/profile/${this.props.userId}`))
               .catch(err => console.log(err));
     }

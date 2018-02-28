@@ -9,6 +9,23 @@ import MockAdapter from 'axios-mock-adapter';
     ]
   });
 
+  mock.onGet('/api/user').reply(200, {
+    users: [{
+      firstName: "Alex",
+      lastName: "",
+      address: "",
+      city: "",
+      state: "",
+      zip: "",
+      profile: "",
+      dogName: "",
+      breed: "",
+      sex: "",
+      age: "",
+      weight: ""
+    }]
+  });
+
   mock.onPost('/api/signup').reply(200, {
     users: [
       { id: 1 }
@@ -42,22 +59,19 @@ export default {
   createUser: function(userData) {
     //return "1";
     return axios.post("/api/newuser", userData);
-  },  
+  },
+
+  getUser: function(userData) {
+    return axios.get("/api/user", userData);
+  },
+
+  updateUser: function(userData) {
+    return axios.post("/api/newuser", userData);
+  },
 
   findMatches: function(searchData) {
     //return "1";
     return axios.get("/api/matches", searchData);
   },
-  /*// Gets the book with the given id
-  getBook: function(id) {
-    return axios.get("/api/books/" + id);
-  },
-  // Deletes the book with the given id
-  deleteBook: function(id) {
-    return axios.delete("/api/books/" + id);
-  },
-  // Saves a book to the database
-  saveBook: function(bookData) {
-    return axios.post("/api/books", bookData);
-  }*/
+
 };
