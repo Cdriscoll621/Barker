@@ -14,7 +14,7 @@ const session = require('express-session');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const bodyParser = require('body-parser');
-
+const authRoute = require('./routes/authentication.js')
 
 // Sets up the Express App
 // =============================================================
@@ -60,8 +60,8 @@ app.use(express.static("public"));
 
 // Routes
 // =============================================================
-require("./routes/api-routes.js")(app, passport);
-const authRoute = require('./routes/authentication.js') ;
+//require("./routes/api-routes.js")(app, passport);
+
 app.use('/', authRoute);
 
 // Syncing our sequelize models and then starting our Express app
