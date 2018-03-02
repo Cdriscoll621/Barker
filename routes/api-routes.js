@@ -2,6 +2,8 @@
 var db = require("../models");
 var bcrypt = require ("bcrypt");
 
+var authController = require('../controllers/authcontroller.js');
+
 module.exports = (app, passport)=>{
 	app.get('/', (req, res)=>{
 		res.render('index.ejs');
@@ -12,11 +14,11 @@ module.exports = (app, passport)=>{
         }).then((user)=>{
             bcrypt.compare(req.body.user_passwd, user.user_passwd, (err, loginSuccess)=>{
                if (loginSuccess){ 
-                   res.json({status: "succes"})
+                   res.json({status: "success"})
                 }
-               else{
+                else{
                     res.json({status: "failure"})
-               }
+                }
         
             })
         });

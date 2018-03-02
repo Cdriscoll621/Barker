@@ -2,7 +2,9 @@ import axios from "axios";
 import MockAdapter from 'axios-mock-adapter';
 
   const mock = new MockAdapter(axios);
-  
+  const passport = require('passport');
+  const LocalStrategy = require('passport-local').Strategy;
+
   mock.onGet('/api/login').reply(200, {
     users: [
       { id: 1 }
