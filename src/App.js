@@ -12,7 +12,7 @@ class App extends Component {
         return (
             <Router>
                 <div>
-                    <Header><h1>Dog "Tinder"</h1></Header>
+                    <Header></Header>
                     <Switch>
                         <Route exact path="/" component={Form} />
                         <Route path="/profile/:userId" component={Profile} />
