@@ -1,0 +1,47 @@
+.card {
+	background-color: rgba(107,122,143,.5);
+	border-radius: 50px;
+	height: auto;
+	margin: 1rem;
+	position: relative;
+	border: 2px solid black;
+	width: 325px;
+	text-align: left;
+}
+
+h3 {
+	text-align: center;
+}
+
+.card > .img-container {
+	margin-top: 10px;
+	height: 60%;
+	overflow: hidden;
+	text-align: center;
+}
+
+.card > .img-container > img {
+	border: 2px solid black;
+	border-radius: 300px;
+	width: 60%
+}
+
+.card > .content {
+	background-color: rgba(247,195,49,.8);
+	border-radius: 30px;
+	border: 1px solid black;
+	margin: 10px;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	font-size: 15px;
+}
+
+.card > .content > ul {
+	list-style-type: none;
+}
+
+.card > .match-btn {
+	width: 50%;
+	margin-left: 25%;
+	margin-bottom: 10px;
+}
