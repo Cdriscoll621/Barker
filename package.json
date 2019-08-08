@@ -1,24 +1,37 @@
 {
-  "name": "final",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@material-ui/core": "^3.9.2",
-    "@material-ui/icons": "^3.0.2",
-    "axios": "^0.18.0",
-    "axios-mock-adapter": "^1.14.0",
-    "bootstrap": "^4.3.1",
-    "geolib": "^2.0.24",
-    "react": "^16.5.0",
-    "react-body-images": "^1.0.1",
-    "react-dom": "^16.2.0",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.1"
-  },
+  "name": "dog-tinder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "server": "node server.js",
+    "client": "node scripts/start-client.js",
+    "start": "node server.js",
+    "build": "node scripts/build.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "installDeps": "yarn && cd client && yarn",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^3.5.0",
+    "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "@google/maps": "^0.4.5",
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "concurrently": "^3.5.0",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "fs": "0.0.1-security",
+    "mysql": "^2.15.0",
+    "mysql2": "^1.5.2",
+    "nodemailer": "^4.6.2",
+    "nodemon": "^1.11.0",
+    "path": "^0.12.7",
+    "sequelize": "^4.33.4",
+    "sequelize-cli": "^4.0.0"
   }
 }
